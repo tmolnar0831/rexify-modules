@@ -1,6 +1,6 @@
 use Rex::Commands::User;
 
-desc "Create a new user.";
+desc "Deploy new users in the system.";
 task "user-create", sub {
   sudo sub {
     my $newuser = "droid";
@@ -15,7 +15,7 @@ task "user-create", sub {
   };
 };
 
-desc "Delete a user.";
+desc "Delete a user from the system.";
 task "user-delete", sub {
   sudo sub {
     delete_user "droid", {

@@ -1,5 +1,5 @@
 desc "Check the free space.";
-task "check-df", sub {
+task "check-fs", sub {
   my $hostname = run "hostname";
   my $output = run "df -h";
   say $hostname . "\n";
@@ -30,14 +30,14 @@ task "check-cpu", sub {
   say $hostname ." - ". run "cat /proc/cpuinfo |grep \"model name\"";
 };
 
-desc "Check the Java version.";
+desc "Check the installed Java version.";
 task "check-java-version", sub {
   my $hostname = run "hostname";
   say $hostname ." - ". run "java -version 2>&1 | head -n1 | grep -v \"command not found\"";
 };
 
-desc "Check the uptime.";
+desc "Check the system uptime.";
 task "check-uptime", sub {
   my $hostname = run "hostname";
-  say $hostname ." - \t\t". run "uptime";
+  say $hostname ." - ". run "uptime";
 };
