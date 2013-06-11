@@ -1,3 +1,5 @@
+my $user = "whoareyou";
+
 user "$user";
 
 sudo_password "$password";
