@@ -1,3 +1,11 @@
+desc "Check the free space.";
+task "check-df", sub {
+  my $hostname = run "hostname";
+  my $output = run "df -h";
+  say $hostname . "\n";
+  say $output . "\n\n";
+};
+
 desc "Check the OS and version.";
 task "check-os", sub {
   my $hostname = run "hostname";
@@ -20,6 +28,15 @@ desc "Check the CPU.";
 task "check-cpu", sub {
   my $hostname = run "hostname";
   say $hostname ." - ". run "cat /proc/cpuinfo |grep \"model name\"";
+};
+
+desc "Check the PE version.";
+task "check-pe-version", sub {
+  sudo sub {
+    my $hostname = run "hostname";
+    my $metainf = "/root/PE/classes/META-INF/MANIFEST.MF";
+    say $hostname ." - ". run "cat ". $metainf ."|grep Branch |cut -d\"-\" -f3";
+  };
 };
 
 desc "Check the Java version.";
