@@ -30,15 +30,6 @@ task "check-cpu", sub {
   say $hostname ." - ". run "cat /proc/cpuinfo |grep \"model name\"";
 };
 
-desc "Check the PE version.";
-task "check-pe-version", sub {
-  sudo sub {
-    my $hostname = run "hostname";
-    my $metainf = "/root/PE/classes/META-INF/MANIFEST.MF";
-    say $hostname ." - ". run "cat ". $metainf ."|grep Branch |cut -d\"-\" -f3";
-  };
-};
-
 desc "Check the Java version.";
 task "check-java-version", sub {
   my $hostname = run "hostname";
