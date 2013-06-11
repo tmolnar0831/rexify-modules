@@ -42,7 +42,7 @@ task "user-list", sub {
 desc "Get user info.";
 task "user-info", sub {
   sudo sub {
-    my @infoarray = get_user("zsola");
+    my @infoarray = get_user("a_user");
     for my $info (@infoarray) {
       say "userinfo: $info";  
     };
