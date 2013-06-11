@@ -1,3 +1,7 @@
+#
+# Include the essential modules
+#
+
 # Authentication 
 require Auth;
 
