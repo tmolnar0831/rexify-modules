@@ -1,15 +1,16 @@
-#
-# Include the essential modules
-#
+# enable new Features
+use Rex -feature => 0.40;
 
-# Authentication 
+# load the authentication module
 require Auth;
 
-# Environment
+# load server groups
 require Servers;
 
-# Tasks
-require Checks;
-require Copy;
-require User;
-require Pkg;
+# set parallel run
+parallelism 5;
+
+# allow to use modules
+require packages;
+require perl;
+require users;
