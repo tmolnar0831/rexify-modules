@@ -6,9 +6,9 @@ If you have to do a task more than once, automate it!
 
 #Modules
 
-1 packages
-2 perl
-3 users
+1. packages
+2. perl
+3. users
 
 #License
 
