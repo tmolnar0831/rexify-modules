@@ -15,11 +15,12 @@ task "install_misc", sub {
           default => "apt-get install --yes --quiet build-essential",
     };
 
-    pkg [ $vimpkg, "tmux", "mc", "curl", "wget", "python-software-properties" ],
+    pkg [ $vimpkg, "tmux", "mc", "curl", "wget" ],
       ensure => "latest";
 
     if ( operating_system eq "Ubuntu" ) {
         pkg "aptitude", ensure => "latest";
+        pkg "python-software-properties", ensure => "latest";
     }
 
     Rex::Logger::info("Installing/updating the development tools");
