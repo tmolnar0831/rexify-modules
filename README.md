@@ -1,14 +1,13 @@
-#Rexify modules
+#Rex modules
 
-Rexify -(R)?ex- is a lightweight Deployment and Configuration Management tool (Remote EXecution).
+[Rex](http://rexify.com) (*RE*mote e*X*ecution) is a lightweight *Deployment*, 
+*Configuration Management* and *Automation* tool. It is ideal for small and 
+large businesses as well. It uses SSH as authentication and transport layer 
+thus it can be set up pretty quick.
 
-If you have to do a task more than once, automate it!
 
-#Modules
+*If one has to do a task more than once, it must be automated!*
 
-1. packages
-2. perl
-3. users
 
 #License
 
