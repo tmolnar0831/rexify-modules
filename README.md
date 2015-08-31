@@ -1,12 +1,12 @@
 #Rex modules
 
-[Rex](http://rexify.com) (*RE*mote e*X*ecution) is a lightweight *Deployment*, 
-*Configuration Management* and *Automation* tool. It is ideal for small and 
+[Rex](http://rexify.org) (**RE**mote e**X**ecution) is a lightweight **Deployment**, 
+**Configuration Management** and **Automation** tool. It is ideal for small and 
 large businesses as well. It uses SSH as authentication and transport layer 
 thus it can be set up pretty quick.
 
 
-*If one has to do a task more than once, it must be automated!*
+**If one has to do a task more than once, it must be automated!**
 
 
 #License
