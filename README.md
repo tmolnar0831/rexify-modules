@@ -9,6 +9,20 @@ thus it can be set up pretty quick.
 **If one has to do a task more than once, it must be automated!**
 
 
+#Tasks
+
+    packages:go_mtpfs       Install go-mptfs (Only on Ubuntu 12.04 desktop)
+    packages:golang         Install Golang
+    packages:install_misc   Install miscellaneous packages on the system
+    packages:update_system  Update the operating system packages
+    packages:virtualbox     Install VirtualBox
+
+    perl:compile_perl_cpan  Compile the perl interpreter from CPAN
+    perl:install_cpanminus  Install cpanminus
+    perl:install_perlbrew   Install Perlbrew with cpanm
+
+    users:create_default    Create default users`
+
 #License
 
 Author: Tamas Molnar
