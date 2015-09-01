@@ -15,11 +15,10 @@ task "install_misc", sub {
           default => "apt-get install --yes --quiet build-essential",
     };
 
-    pkg [ $vimpkg, "tmux", "mc", "curl", "wget" ],
-      ensure => "latest";
+    pkg [ $vimpkg, "tmux", "mc", "curl", "wget" ], ensure => "latest";
 
     if ( operating_system eq "Ubuntu" ) {
-        pkg "aptitude", ensure => "latest";
+        pkg "aptitude",                   ensure => "latest";
         pkg "python-software-properties", ensure => "latest";
     }
 
@@ -73,6 +72,8 @@ task "go_mtpfs", sub {
         pkg "go-mtpfs", ensure => "present";
     }
     else {
+        Rex::Logger::info( "Please double check the target system OS and version!",
+            "error" );
         die("This task only works on Ubuntu 12.04");
     }
 };
