@@ -23,7 +23,21 @@ task "install_perlbrew", sub {
     }
     Rex::Logger::info("Installing Perlbrew");
     run "install_perlbrew", command => "cpanm App::perlbrew";
-    Rex::Logger::info("Perlbrew has been installed");
+    if ( $? != 0 ) {
+        Rex::Logger::info( "Installing Perlbrew was not successful", "warn" );
+        my $retries = 3;
+        while ( $retries > 0 ) {
+            Rex::Logger::info(
+                "Retrying to install Perlbrew, retries: $retries", "warn" );
+            run "install_perlbrew", command => "cpanm App::perlbrew";
+            Rex::Logger::info("Perlbrew has been installed") if $? == 0;
+            last if $? == 0;
+            --$retries;
+        }
+    }
+    else {
+        Rex::Logger::info("Perlbrew has been installed");
+    }
 };
 
 desc "Compile the perl interpreter from CPAN";
