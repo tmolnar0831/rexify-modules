@@ -1,13 +1,7 @@
-#Rex modules
+#Rex
 
-[Rex](http://rexify.org) (**RE**mote e**X**ecution) is a lightweight **Deployment**, 
-**Configuration Management** and **Automation** tool. It is ideal for small and 
-large businesses as well. It uses SSH as authentication and transport layer 
-thus it can be set up pretty quick.
-
-
-**If one has to do a task more than once, it must be automated!**
-
+[Rex](http://rexify.org) (**RE**mote e**X**ecution) is a lightweight **Deployment**,   
+**Configuration Management** and **Automation** tool.
 
 #Tasks
 
@@ -21,7 +15,7 @@ thus it can be set up pretty quick.
     perl:install_cpanminus  Install cpanminus
     perl:install_perlbrew   Install Perlbrew with cpanm
 
-    users:create_default    Create default users`
+    users:create_default    Create default users
 
 #License
 
@@ -40,4 +34,4 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and 
-limitations under the License. 
+limitations under the License.
