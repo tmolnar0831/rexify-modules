@@ -82,4 +82,14 @@ task "compile_perl_cpan", sub {
       command => "make install";
 };
 
+desc "Install the perl6 compiler (Rakudo)";
+task "perl6", sub {
+    if ( operating_system eq "Ubuntu" ) {
+        pkg "rakudo", ensure => "latest";
+    }
+    else {
+        Rex::Logger::info( "This task works only on Ubuntu", "warn" );
+    }
+};
+
 1;
