@@ -38,7 +38,7 @@ task "update_system", sub {
     update_system;
 };
 
-desc "Install VirtualBox";
+desc "Install VirtualBox 5.0";
 task "virtualbox", sub {
     repository
       "add"      => "virtualbox",
@@ -72,8 +72,8 @@ task "go_mtpfs", sub {
         pkg "go-mtpfs", ensure => "present";
     }
     else {
-        Rex::Logger::info( "Please double check the target system OS and version!",
-            "error" );
+        Rex::Logger::info(
+            "Please double check the target system OS and version!", "error" );
         die("This task only works on Ubuntu 12.04");
     }
 };
