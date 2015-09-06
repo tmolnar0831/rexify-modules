@@ -14,3 +14,4 @@ parallelism 5;
 require packages;
 require perl;
 require users;
+require citrix;
