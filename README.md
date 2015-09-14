@@ -4,16 +4,16 @@
 **Configuration Management** and **Automation** tool.
 
 #Tasks
-
     packages:go_mtpfs       Install go-mptfs (Only on Ubuntu 12.04 desktop)
     packages:golang         Install Golang
     packages:install_misc   Install miscellaneous packages on the system
     packages:update_system  Update the operating system packages
-    packages:virtualbox     Install VirtualBox
+    packages:virtualbox     Install VirtualBox 5.0
 
     perl:compile_perl_cpan  Compile the perl interpreter from CPAN
     perl:install_cpanminus  Install cpanminus
     perl:install_perlbrew   Install Perlbrew with cpanm
+    perl:perl6              Install the perl6 compiler (Rakudo)
 
     users:create_default    Create default users
 
