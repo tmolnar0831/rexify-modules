@@ -25,7 +25,6 @@ task "create_default", sub {
           groups      => $groups,
           password    => "ch4ng3m3";
     }
-
 };
 
 1;
