@@ -34,7 +34,6 @@ task "vim", sub {
     };
 
     sudo sub {
-
         pkg $vimpkg, ensure => 'latest';
 
         file "/home/${remote_user}/.vimrc",
