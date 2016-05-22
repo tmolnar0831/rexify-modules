@@ -1,0 +1,156 @@
+=head1 NAME
+
+B<Crypt::RSA::Simple> - Encrypts/decrypts text with RSA keys
+
+=head1 SYNOPSIS
+
+  use Crypt::RSA::Simple;
+
+  my $crypt = Crypt::RSA::Simple->new(
+    key_dir     => '/home/user/keys',
+    key_size    => 2048,
+    private_key => 'secure_key.priv',
+    public_key  => 'secure_key.pub',
+  );
+  
+  $crypt->generate()
+
+Or it can be fed with method arguments:
+
+  my $crypt = Crypt::RSA::Simple->new();
+
+  $crypt->generate(
+    '/home/user/keys',
+    2048,
+    'secure_key.priv',
+    'secure_key.pub'
+  );
+
+Private and public keys can be set with
+their getter/setter methods as well as the
+key_dir and key_size:
+
+  my $crypt->private_key( '/home/user/keys/secret.priv' );
+  my $crypt->public_key( '/home/user/keys/secret.pub' );
+
+  my $crypted   = $crypt->encrypt( 'text to crypt' );
+  my $encrypted = $crypt->decrypt( $crypted );
+
+Or keys can be used with the C<crypt> and C<decrypt>
+methods as their arguments as well:
+
+  my $decrypted = $crypt->decrypt(
+    'encrypted text',
+    '/home/user/keys/secret.priv'
+  );
+
+Class methods and instance methods are both supported:
+
+  Crypt::RSA::Simple->encrypt( 'text', '/home/user/keys/secret.pub' );
+
+=head1 DESCRIPTION
+
+B<Crypt::RSA::Simple> is just a tiny but flexible wrapper on the top of the
+C<Crypt::OpenSSL::RSA> library. It encrypts and decrypts
+any text, and it can generate RSA keys if necessary.
+
+This tool does not give any new features to the original module,
+rather it wraps it into an easy-to-use form. It offers an elegant,
+pure Perl OO interface.
+
+It uses C<MIME::Base64> to encode/decode the crypted text, makes it
+easier to store it on a drive e.g. in a file.
+
+=head1 METHODS
+
+=over 4
+
+=item B<new>:
+
+Creates a new Crypt::RSA::Simple object instance
+
+B<Arguments>:
+
+C<key_dir>: Path to the key directory (String)
+
+C<key_size>: Key size for key generation (Integer)
+
+C<private_key>: Name of the key (String)
+
+C<public_key>: Name of the key (String)
+
+All parameters can be set with getter/setter methods
+
+=item B<private_key>:
+
+Getter/setter method for the private key
+
+=item B<public_key>:
+
+Getter/setter method for the public key
+
+=item B<key_dir>:
+
+Getter/setter method for the key directory
+
+=item B<key_size>:
+
+Getter/setter method for the key size
+
+=item B<generate_keys>:
+
+Method for private and public key generation
+
+B<Arguments>:
+
+C<key_dir>: Path to the key directory (String)
+
+C<key_size>: Key size for key generation (Integer)
+
+C<private_key>: Name of the key (String)
+
+C<public_key>: Name of the key (String)
+
+This method generates a key pair into the C<key_dir> to
+encrypt and decrypt with. If it is called without arguments
+it uses the default values.
+
+=item B<encrypt>
+
+Method for text encrytion
+
+B<Arguments>:
+
+C<text>: Text to be encrypted (String)
+
+C<public_key>: Public key for encryption (String)
+
+=item B<decrypt>
+
+Method for decrypting ecrypted text
+
+B<Arguments>:
+
+C<text>: Text to be decrypted (String)
+
+C<private_key>: Private key for encryption (String)
+
+=back
+
+=head1 AUTHOR
+
+Tamas Molnar <stiron@gmail.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2015, Tamas Molnar
+
+This library is free software; you may redistribute it and/or
+modify it under the same terms as Perl itself.
+
+=head1 SEE ALSO
+
+L<Crypt::OpenSSL::RSA>
+
+L<MIME::Base64>
+

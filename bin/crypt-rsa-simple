@@ -1,0 +1,94 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature 'say';
+
+use FindBin qw($RealBin);
+use lib "$RealBin/../lib";
+use Crypt::RSA::Simple;
+use Getopt::Long;
+use Pod::Usage;
+
+my $action = shift || 'not_set';
+
+GetOptions( \my %opt, 'private_key=s', 'public_key=s', 'text=s', 'block' );
+
+if ( $action eq 'encrypt' ) {
+    die "Public key needed for encryption\n" if !$opt{'public_key'};
+    die "Provide text for encryption\n"      if !$opt{'text'};
+    my $c = Crypt::RSA::Simple->new( public_key => $opt{'public_key'}, );
+    my $enc = $c->encrypt( $opt{'text'} );
+    $enc =~ s/\R//g if !$opt{'block'};
+    say $enc;
+}
+elsif ( $action eq 'decrypt' ) {
+    die "Private key needed for encryption\n" if !$opt{'private_key'};
+    die "Provide text for decryption\n"       if !$opt{'text'};
+    my $c = Crypt::RSA::Simple->new( private_key => $opt{'private_key'}, );
+    my $dec = $c->decrypt( $opt{'text'} );
+    say $dec;
+}
+else {
+    pod2usage( -verbose => 1 );
+}
+
+__END__
+
+=head1 NAME
+
+B<crypt-rsa-simple> - Command line interface for Crypt::RSA::Simple
+
+=head1 SYNOPSIS
+
+  crypt-rsa-simple encrypt --public_key /home/user/keys/secure.pub --text 'Text to encrypt'
+
+  crypt-rsa-simple decrypt --private_key /home/user/keys/secure.priv --text '11jXVZSFEzsvc5ZfgSZUn3BRIGF9wihPPQmXdmEGYmpuwg0xBD/rOEhqoSgsPwCdSu1/NRsuWmjLnsovfE4dLeMmq+cLheNZ7DkctuMSh7ceG4OQ3zNA/nlYdWxNMRiO/xxshubj/YEz7uiJypORHqPv1Y2LBuE+qlOBxRh0Ozdt6Xk6gWrjonnq2I/1pCzEI7Vkuz3kFtAYbRVLrTScsv7XCSJxCcpSmCBjbeVA1INwdrkijQq41b7N+8YKzRH/rhdSTecJ9Ug7SaRlI3yjy9uNT428pP7VM7WtMFMDDlDJIxsU+hb1i6AnWtBx5X9cM0J8AQPhtLKGFxvWo9W+Q=='
+
+=head1 DESCRIPTION
+
+This tool is a simple command line interface for Crypt::RSA::Simple.
+
+=head1 ARGUMENTS
+
+=head2 encrypt
+
+=over 4
+
+=item --public_key
+
+Public key to encrypt with
+
+=item --text
+
+Plain text to encrypt
+
+=item --block
+
+Print out the crypt as string or block
+
+=back
+
+=head2 decrypt
+
+=over 4
+
+=item --private_key
+
+Private key to decrypt with
+
+=item --text
+
+Encrypted text to decrypt
+
+=back
+
+=head1 AUTHOR
+
+Tamas Molnar <stiron@gmail.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2015, Tamas Molnar
+
+This library is free software; you may redistribute it and/or modify it under the same terms as Perl itself.

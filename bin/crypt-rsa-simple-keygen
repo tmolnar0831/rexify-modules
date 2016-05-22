@@ -1,0 +1,81 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use FindBin qw($RealBin);
+use lib "$RealBin/../lib";
+use Crypt::RSA::Simple;
+use Getopt::Long;
+use Pod::Usage;
+
+GetOptions( \my %opt, 'key_size=i', 'key_dir=s', 'private_key=s',
+    'public_key=s', 'help', );
+
+pod2usage( -verbose => 1 ) if $opt{'help'};
+
+my $gen = Crypt::RSA::Simple->new(
+    key_dir     => $opt{'key_dir'},
+    key_size    => $opt{'key_size'},
+    private_key => $opt{'private_key'},
+    public_key  => $opt{'public_key'},
+);
+
+print "Generating RSA keys:\n";
+print "Key size: " . $gen->key_size() . "\n";
+print "Target directory: " . $gen->key_dir() . "\n";
+print "Public key name: " . $gen->public_key() . "\n";
+print "Private key name: " . $gen->private_key() . "\n";
+
+$gen->generate();
+
+__END__
+
+=head1 NAME
+
+B<crpyt-rsa-simple-keygen> - Generate RSA keypairs for Crypt::RSA::Simple
+
+=head1 SYNOPSIS
+
+  crpyt-rsa-simple-keygen --key_size 2048 --key_dir /home/user/keys \
+  --private_key secure.priv --public_key secure.pub
+
+=head1 DESCRIPTION
+
+This tool is a helper script for generating valid RSA keypairs
+for the Crypt::RSA::Simple module. Unless command line options
+are provided, the default options will be used, thus all
+of them are optional, but recommended to use.
+
+=head1 OPTIONS
+
+=over 4
+
+=item B<--key_size> (default: 2048)
+
+Key size for generation
+
+=item B<--key_dir> (default: /var/tmp)
+
+Directory for generating the keys into
+
+=item B<--public_key> (default: secure_rsa_key.pub)
+
+Name of the public key
+
+=item B<--private_key> (default: secure_rsa_key.priv)
+
+Name of the private key
+
+=back
+
+=head1 AUTHOR
+
+Tamas Molnar <stiron@gmail.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2015, Tamas Molnar
+
+This library is free software; you may redistribute it and/or
+modify it under the same terms as Perl itself.

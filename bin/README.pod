@@ -1,0 +1,57 @@
+=head1 NAME
+
+B<crypt-rsa-simple> - Command line interface for Crypt::RSA::Simple
+
+=head1 SYNOPSIS
+
+  crypt-rsa-simple encrypt --public_key /home/user/keys/secure.pub --text 'Text to encrypt'
+
+  crypt-rsa-simple decrypt --private_key /home/user/keys/secure.priv --text '11jXVZSFEzsvc5ZfgSZUn3BRIGF9wihPPQmXdmEGYmpuwg0xBD/rOEhqoSgsPwCdSu1/NRsuWmjLnsovfE4dLeMmq+cLheNZ7DkctuMSh7ceG4OQ3zNA/nlYdWxNMRiO/xxshubj/YEz7uiJypORHqPv1Y2LBuE+qlOBxRh0Ozdt6Xk6gWrjonnq2I/1pCzEI7Vkuz3kFtAYbRVLrTScsv7XCSJxCcpSmCBjbeVA1INwdrkijQq41b7N+8YKzRH/rhdSTecJ9Ug7SaRlI3yjy9uNT428pP7VM7WtMFMDDlDJIxsU+hb1i6AnWtBx5X9cM0J8AQPhtLKGFxvWo9W+Q=='
+
+=head1 DESCRIPTION
+
+This tool is a simple command line interface for Crypt::RSA::Simple.
+
+=head1 ARGUMENTS
+
+=head2 encrypt
+
+=over 4
+
+=item --public_key
+
+Public key to encrypt with
+
+=item --text
+
+Plain text to encrypt
+
+=item --block
+
+Print out the crypt as string or block
+
+=back
+
+=head2 decrypt
+
+=over 4
+
+=item --private_key
+
+Private key to decrypt with
+
+=item --text
+
+Encrypted text to decrypt
+
+=back
+
+=head1 AUTHOR
+
+Tamas Molnar <stiron@gmail.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2015, Tamas Molnar
+
+This library is free software; you may redistribute it and/or modify it under the same terms as Perl itself.
