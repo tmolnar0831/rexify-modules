@@ -5,6 +5,8 @@ set cmdb => {
     path => [ 'cmdb/{hostname}.yaml', 'cmdb/default.yaml', ],
 };
 
+logformat "[%D] %l %h - %s";
+
 # enable new Features
 use Rex -feature => 0.40;
 
