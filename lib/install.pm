@@ -27,13 +27,13 @@ task "miscellaneous", sub {
 desc "Install and configure the VIM package";
 task "vim", sub {
     my $remote_user = get( cmdb('remote_user') );
+    my $vimpkg = case operating_system, {
+        CentOS    => "vim-common",
+          Ubuntu  => "vim",
+          default => "vim",
+    };
 
     sudo sub {
-        my $vimpkg = case operating_system, {
-            CentOS    => "vim-common",
-              Ubuntu  => "vim",
-              default => "vim",
-        };
 
         pkg $vimpkg, ensure => 'latest';
 
@@ -48,10 +48,10 @@ task "vim", sub {
 desc "Install and configure the tmux package";
 task "tmux", sub {
     my $remote_user = get( cmdb('remote_user') );
-    
+
     sudo sub {
         pkg "tmux", ensure => "latest";
-        
+
         file "/home/${remote_user}/.tmux.conf",
           source => 'files/tmux.conf',
           owner  => ${remote_user},
