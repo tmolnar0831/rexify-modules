@@ -52,10 +52,6 @@ autocmd FileType python set shiftwidth=4
 autocmd FileType python set softtabstop=4
 autocmd FileType python set cc=79
 
-" colorcolumn
-map <F3> :set cc=79<cr>
-map <F4> :set cc=0<cr>
-
 " comment/uncomment
 vmap ,c :s/^/#/<Enter>
 vmap ,C :s/^#//<Enter>
