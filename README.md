@@ -1,27 +1,15 @@
 #Rex
 
-[Rex](http://rexify.org) (**RE**mote e**X**ecution) is a lightweight **Deployment**,   
-**Configuration Management** and **Automation** tool.
+[Rex](http://rexops.org) (**RE**mote e**X**ecution): lightweight **Deployment**,   
+**Configuration Management** and **Automation**
 
 #Tasks
-    packages:go_mtpfs       Install go-mptfs (Only on Ubuntu 12.04 desktop)
-    packages:golang         Install Golang
-    packages:install_misc   Install miscellaneous packages on the system
-    packages:update_system  Update the operating system packages
-    packages:virtualbox     Install VirtualBox 5.0
-
-    perl:compile_perl_cpan  Compile the perl interpreter from CPAN
-    perl:install_cpanminus  Install cpanminus
-    perl:install_perlbrew   Install Perlbrew with cpanm
-    perl:perl6              Install the perl6 compiler (Rakudo)
-
-    users:create_default    Create default users
 
 #License
 
 Author: Tamas Molnar
 
-Copyright 2015, Tamas Molnar.
+Copyright 2015-2016, Tamas Molnar.
 
 Licensed under the Apache License, Version 2.0 (the "License")
 
