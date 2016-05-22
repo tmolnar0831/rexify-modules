@@ -1,4 +1,5 @@
 Auth.pm
 Servers.pm
+keys
 *.lock
 *.swp
