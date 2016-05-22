@@ -1,14 +1,10 @@
 package install;
 
 use Rex -base;
+use Rex::CMDB;
 
 desc "Install miscellaneous packages on the system";
-task "install_misc", sub {
-    my $vimpkg = case operating_system, {
-        CentOS    => "vim-common",
-          Ubuntu  => "vim",
-          default => "vim",
-    };
+task "miscellaneous", sub {
     my $devtools = case operating_system, {
         CentOS    => "yum -y groupinstall \"Development Tools\"",
           Ubuntu  => "apt-get install --yes --quiet build-essential",
@@ -16,7 +12,7 @@ task "install_misc", sub {
     };
 
     sudo sub {
-        pkg [ $vimpkg, "tmux", "mc", "curl", "wget" ], ensure => "latest";
+        pkg [ "mc", "curl", "wget", "dkms" ], ensure => "latest";
 
         if ( operating_system eq "Ubuntu" ) {
             pkg "aptitude",                   ensure => "latest";
@@ -25,6 +21,27 @@ task "install_misc", sub {
 
         Rex::Logger::info("Installing/updating the development tools");
         run "install-devtools", command => $devtools;
+    };
+};
+
+desc "Install and configure the VIM package";
+task "vim", sub {
+    my $remote_user = get( cmdb('remote_user') );
+
+    sudo sub {
+        my $vimpkg = case operating_system, {
+            CentOS    => "vim-common",
+              Ubuntu  => "vim",
+              default => "vim",
+        };
+
+        pkg $vimpkg, ensure => 'latest';
+
+        file "/home/${remote_user}/.vimrc",
+          source => 'files/vimrc',
+          owner  => ${remote_user},
+          group  => ${remote_user},
+          mode   => 640;
     };
 };
 
