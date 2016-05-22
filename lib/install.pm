@@ -45,6 +45,21 @@ task "vim", sub {
     };
 };
 
+desc "Install and configure the tmux package";
+task "tmux", sub {
+    my $remote_user = get( cmdb('remote_user') );
+    
+    sudo sub {
+        pkg "tmux", ensure => "latest";
+        
+        file "/home/${remote_user}/.tmux.conf",
+          source => 'files/tmux.conf',
+          owner  => ${remote_user},
+          group  => ${remote_user},
+          mode   => 640;
+    };
+};
+
 desc "Update the operating system packages";
 task "update_system", sub {
     sudo sub {
