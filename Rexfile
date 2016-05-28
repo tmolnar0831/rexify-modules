@@ -21,5 +21,6 @@ parallelism 5;
 
 # allow to use modules
 require install;
+require update;
 require perl;
 require users;

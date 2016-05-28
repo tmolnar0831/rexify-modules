@@ -59,20 +59,6 @@ task "tmux", sub {
     };
 };
 
-desc "Update the operating system packages";
-task "update_system", sub {
-    sudo sub {
-        if ( operating_system eq "Ubuntu" ) {
-            Rex::Logger::info(
-                "Updating package database first on Debian based systems");
-            update_package_db;
-        }
-
-        Rex::Logger::info("Updating the system");
-        update_system;
-    };
-};
-
 desc "Install VirtualBox 5.0";
 task "virtualbox", sub {
     sudo sub {
