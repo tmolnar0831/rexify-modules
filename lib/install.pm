@@ -61,18 +61,8 @@ task "tmux", sub {
 
 desc "Install VirtualBox 5.0";
 task "virtualbox", sub {
+    needs repo 'virtualbox';
     sudo sub {
-        repository
-          "add"      => "virtualbox",
-          url        => "http://download.virtualbox.org/virtualbox/debian",
-          distro     => "precise",
-          repository => "contrib",
-          key_url    => "https://www.virtualbox.org/download/oracle_vbox.asc";
-
-        Rex::Logger::info(
-            "Updating the package database after adding the new repo");
-        update_package_db;
-
         pkg "virtualbox-5.0", ensure => "present";
     };
 };
