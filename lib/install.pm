@@ -67,34 +67,6 @@ task "virtualbox", sub {
     };
 };
 
-desc "Install go-mptfs (Only on Ubuntu 12.04 desktop)";
-task "go_mtpfs", sub {
-    sudo sub {
-        if ( operating_system eq "Ubuntu" and operating_system_version == 1204 )
-        {
-            repository
-              "add"  => "go-mtpfs",
-              url    => "http://ppa.launchpad.net/webupd8team/unstable/ubuntu",
-              distro => "precise",
-              repository => "main",
-              key_server => "keyserver.ubuntu.com",
-              key_id     => "7B2C3B0889BF5709A105D03AC2518248EEA14886";
-
-            Rex::Logger::info(
-                "Updating the package database after adding the new repo");
-            update_package_db;
-
-            pkg "go-mtpfs", ensure => "present";
-        }
-        else {
-            Rex::Logger::info(
-                "Please double check the target system OS and version!",
-                "error" );
-            die("This task only works on Ubuntu 12.04");
-        }
-    };
-};
-
 desc "Install Golang";
 task "golang", sub {
     my $go_tar        = "go1.5.linux-amd64.tar.gz";
