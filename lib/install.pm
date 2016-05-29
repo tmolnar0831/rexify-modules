@@ -67,30 +67,4 @@ task "virtualbox", sub {
     };
 };
 
-desc "Install Golang";
-task "golang", sub {
-    my $go_tar        = "go1.5.linux-amd64.tar.gz";
-    my $go_tar_remote = "https://storage.googleapis.com/golang/${go_tar}";
-
-    if ( !-e "/tmp/${go_tar}" ) {
-        Rex::Logger::info("Downloading $go_tar to the local computer");
-        download $go_tar_remote, "/tmp/${go_tar}";
-    }
-    else {
-        Rex::Logger::info("Local go tar exists, skipping download");
-    }
-
-    Rex::Logger::info("Uploading $go_tar to the remote computer");
-    upload "/tmp/${go_tar}", "/tmp/${go_tar}";
-
-    extract "/tmp/${go_tar}",
-      owner => "root",
-      group => "root",
-      to    => "/usr/local",
-      mode  => 777;
-
-    Rex::Logger::info("Install complete");
-    Rex::Logger::info("/usr/local/go/bin needs to be added to PATH");
-};
-
 1;
