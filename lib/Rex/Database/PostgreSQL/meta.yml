@@ -1,0 +1,4 @@
+Name: Rex::Database::PostgreSQL
+Description: Simple Module to install a PostgreSQL server
+Author: Tamas Molnar <stiron@gmail.com>
+License: Apache 2.0
