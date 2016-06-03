@@ -8,10 +8,13 @@ set cmdb => {
 logformat "[%D] %l %h - %s";
 
 # enable new Features
-use Rex -feature => 0.40;
+use Rex -feature => ['1.0'];
 
 # load the authentication module
 require Auth;
+
+# turn on sudo globally
+sudo -on;
 
 # load server groups
 require Servers;
@@ -20,6 +23,8 @@ require Servers;
 parallelism 5;
 
 # allow to use modules
+require Rex::Database::PostgreSQL;
+
 require install;
 require System;
 require repo;
